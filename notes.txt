@@ -1,1 +1,6 @@
-..
+Time complexity: number of computations in worst scenario
+Space complexity: memory deployed
+
+Ω omega - best scenario (iteration through a list and stop at the first item)
+Θ theta - average scenario (iteration through a list and stop in the middle)
+Ο omicron - worst scenario the most important (iteration through a list and stop at the last item)
