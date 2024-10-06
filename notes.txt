@@ -4,3 +4,46 @@ Space complexity: memory deployed
 Ω omega - best scenario (iteration through a list and stop at the first item)
 Θ theta - average scenario (iteration through a list and stop in the middle)
 Ο omicron - worst scenario the most important (iteration through a list and stop at the last item)
+
+O(n) - worst scenario with as much computations as possible called also (proportional)
+
+-----------------------------------------------------------------------------------
+# example of O(n2) - a lot less efficient
+
+def print_items(n):
+    for i in range(n):
+        for j in range(n):
+            print(f"{i}{j}")
+
+print_items(3)
+
+-----------------------------------------------------------------------------------
+# example DROP DOMINANT: here we have O(n2) + O(n) or O(n2 + n) the second loop is irrelevant
+# so we can declare this algorithm as O(n2)
+
+def print_items(n):
+    for i in range(n):
+        for j in range(n):
+            print(f"{i}{j}")
+    
+    for k in range(n):
+        print(k)
+
+print_items(10)
+
+-----------------------------------------------------------------------------------
+# example O(1) so just one computation (the most efficient)
+
+def add(n):
+    return n+n
+
+-----------------------------------------------------------------------------------
+# example O(log n) in a list the items have to be sorted (very efficient):
+[1, 2, 3, 4, 5, 6, 7]
+the algorithm cuts the list in have until it achieve the item
+
+-----------------------------------------------------------------------------------
+# Big O lists: append or pop are O(1) because the index of the other items doesn't change
+# insert or removing an item in the middle or in the beginning is O(n) because of
+# the re indexing of the items
+[1, 2, 3, 4, 5, 6, 7]
