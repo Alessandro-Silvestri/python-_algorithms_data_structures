@@ -17,6 +17,13 @@ class LinkedList:
             temp = temp.next
         print(f"[length: {self.length}]")
     
+    def debug_get_head_tail_values(self):
+        print(f"\nHead object: {self.head}")
+        print(f"Tail object: {self.tail}")
+        print(f"Head.value: {self.head.value}")
+        print(f"Tail.value: {self.tail.value}")
+        print()
+    
     def append(self, value):
         new_node = Node(value) # create a node 
         self.length += 1 # increase the length
@@ -28,15 +35,37 @@ class LinkedList:
         return True
 
     def pop(self):
-        temp = self.head
-        for i in range(1, self.length - 1):
-            temp = temp.next
-        self.tail = temp
-        temp = temp.next
-        self.tail.next = None
+        if self.head is None: # edge case: empty list
+            return None
+        elif self.length == 1: # edge case: list with 1 item
+            temp = self.head
+            self.head = self.tail = None
+            self.length = 0
+            return temp.value       
+        else: # using 2 pointers
+            temp = pre = self.head
+            while temp.next:
+                pre = temp
+                temp = temp.next
+        self.tail = pre
+        pre.next = None
         self.length -= 1
         return temp.value
     
+    def prepend(self, value):
+        new_node = Node(value)
+        self.length += 1
+        if self.head is None: # edge case: empty list
+            self.head = self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head = new_node
+        return True
+
+        
+        
+
+            
             
 
 my_list = LinkedList(1)
@@ -44,7 +73,10 @@ my_list.append(2)
 my_list.append(3)
 my_list.append(4)
 my_list.print_list()
-print(my_list.pop())
-print()
+# print("pop")
+# print(my_list.pop())
+
+my_list.prepend(18)
 my_list.print_list()
+
 
