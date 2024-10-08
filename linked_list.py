@@ -20,8 +20,6 @@ class LinkedList:
     def debug_get_head_tail_values(self):
         print(f"\nHead object: {self.head}")
         print(f"Tail object: {self.tail}")
-        print(f"Head.value: {self.head.value}")
-        print(f"Tail.value: {self.tail.value}")
         print()
     
     def append(self, value):
@@ -61,6 +59,19 @@ class LinkedList:
             new_node.next = self.head
             self.head = new_node
         return True
+    
+    def pop_first(self):
+        if self.head is None: # edge case: empty list
+            self.tail = None
+            return None
+        else:
+            temp = self.head
+            self.head = self.head.next
+            temp.next = None
+            self.length -= 1
+            if self.length == 0:
+                self.tail = None
+            return temp.value
 
         
         
@@ -73,10 +84,9 @@ my_list.append(2)
 my_list.append(3)
 my_list.append(4)
 my_list.print_list()
-# print("pop")
-# print(my_list.pop())
-
-my_list.prepend(18)
+print("pop: ", my_list.pop_first())
 my_list.print_list()
+
+# my_list.debug_get_head_tail_values()
 
 
