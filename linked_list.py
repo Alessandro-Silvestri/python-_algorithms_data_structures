@@ -20,6 +20,14 @@ class LinkedList:
     def debug_get_head_tail_values(self):
         print(f"\nHead object: {self.head}")
         print(f"Tail object: {self.tail}")
+        try:
+            print(f"Head value: {self.head.value}")
+        except AttributeError as e:
+            print(f"Head value ERROR: {e.args[0]}")
+        try:
+            print(f"Tail value: {self.tail.value}")
+        except AttributeError as e:
+            print(f"Tail value ERROR: {e.args[0]}")
         print()
     
     def append(self, value):
@@ -48,7 +56,7 @@ class LinkedList:
         self.tail = pre
         pre.next = None
         self.length -= 1
-        return temp.value
+        return temp
     
     def prepend(self, value):
         new_node = Node(value)
@@ -71,22 +79,60 @@ class LinkedList:
             self.length -= 1
             if self.length == 0:
                 self.tail = None
-            return temp.value
+            return temp
+    
+    def get(self, index):
+        # edge case: index out of range or empty list
+        if index < 0 or index >= self.length:
+            return None
+        temp = self.head
+        for _ in range(index):
+            temp = temp.next
+        return temp
+    
+    def set_value(self, index, value):
+        temp = self.get(index) # edge case: index out of range or empty list
+        if temp is None:
+            return False
+        temp.value = value
+        return True
+    
+    def insert(self, index, value):
+        # consider the following edge cases:
+        # empty list
+        # index out of range
+        # insert in the first position (last position already work)
+
+
+
+
+
+
+
+        # normale case
+        new_node = Node(value)
+        pre = self.get(index - 1)
+        temp = pre.next
+        pre.next = new_node
+        new_node.next = temp
+        self.length += 1
+
+
+
 
         
-        
 
-            
-            
-
-my_list = LinkedList(1)
-my_list.append(2)
-my_list.append(3)
-my_list.append(4)
+my_list = LinkedList(5)
+my_list.append(10)
+my_list.append(15)
+my_list.append(20)
+my_list.append(25)
+my_list.append(30)
+my_list.append(35)
+my_list.append(40)
 my_list.print_list()
-print("pop: ", my_list.pop_first())
+my_list.insert(9, 10000000)
 my_list.print_list()
 
-# my_list.debug_get_head_tail_values()
-
+my_list.debug_get_head_tail_values()
 
