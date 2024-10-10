@@ -98,41 +98,48 @@ class LinkedList:
         return True
     
     def insert(self, index, value):
-        # consider the following edge cases:
-        # empty list
-        # index out of range
-        # insert in the first position (last position already work)
-
-
-
-
-
-
-
-        # normale case
+        # edge case: index out of range or empty list
+        if index < 0 or index > self.length or self.head is None:
+            return False
+        # edge case: insert at the first position
+        if index == 0:
+            self.prepend(value)
+            return True
         new_node = Node(value)
         pre = self.get(index - 1)
         temp = pre.next
         pre.next = new_node
         new_node.next = temp
+        # edge case: new_node in the last position: I move tail to new_node
+        if index == self.length: 
+            self.tail = new_node
         self.length += 1
-
-
-
-
+        return True
+    
+    def remove(self, index):
+        # edge case: index out of range or empty list
+        if index < 0 or index >= self.length or self.head is None:
+            return None    
+        if index == 0: # remove first node
+            return self.pop_first()
+        if index == self.length - 1: # remove last node    
+            return self.pop()
+        pre = self.get(index - 1)
+        temp = pre.next
+        pre.next = temp.next
+        temp.next = None
+        self.length -= 1
+        return temp
+     
         
-
+print()
 my_list = LinkedList(5)
 my_list.append(10)
 my_list.append(15)
 my_list.append(20)
-my_list.append(25)
-my_list.append(30)
-my_list.append(35)
-my_list.append(40)
 my_list.print_list()
-my_list.insert(9, 10000000)
+print(my_list.remove(1))
 my_list.print_list()
-
 my_list.debug_get_head_tail_values()
+
 
