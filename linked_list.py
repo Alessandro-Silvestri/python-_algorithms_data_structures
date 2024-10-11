@@ -132,6 +132,16 @@ class LinkedList:
         return temp
     
     def reverse(self):
+        '''
+        H                                   T
+        1    ->     2    ->     3    ->     4    -> None
+                              temp1       temp2
+
+        • I create the temp pointers
+        • I invert the direction between the pointers
+        • loop until the beginning
+        • invert head and tail
+        '''
         index = self.length - 2
         cycles = self.length - 1
         for i in range(cycles):
