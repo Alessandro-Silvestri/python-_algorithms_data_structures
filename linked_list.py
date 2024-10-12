@@ -130,39 +130,42 @@ class LinkedList:
         temp.next = None
         self.length -= 1
         return temp
-    
+
     def reverse(self):
         '''
-        H                                   T
-        1    ->     2    ->     3    ->     4    -> None
-                              temp1       temp2
+      None       T                                   H
+                 1    ->     2    ->     3    ->     4    -> None
+     before     temp        after
 
-        • I create the temp pointers
-        • I invert the direction between the pointers
-        • loop until the beginning
         • invert head and tail
+        • I create 3 pointers
+        • I invert the direction between temp and before
+        • loop until the end
+       
         '''
-        index = self.length - 2
-        cycles = self.length - 1
-        for i in range(cycles):
-            temp1 = self.get(index)
-            temp2 = temp1.next
-            temp2.next = temp1
-            temp1.next = None
-            index -= 1
+        # edge case: empty list
+        if self.head is None:
+            return None
+        # create 3 pointers
         temp = self.head
+        before = None
+        after = temp.next
+        # swap head and tail
         self.head = self.tail
-        self.tail = temp        
+        self.tail = temp
+        # cycling to the end for changing direction
+        cycles = self.length - 1
+        for _ in range(cycles):
+            temp.next = before
+            before = temp
+            temp = after
+            after = after.next
+        temp.next = before
        
 print()
 my_list = LinkedList(1)
-my_list.append(2)
-my_list.append(3)
-my_list.append(4)
+my_list.pop()
 my_list.reverse()
 my_list.print_list()
-my_list.debug_get_head_tail_values()
-print(my_list.tail.next)
-
 
 
