@@ -1,3 +1,10 @@
+'''
+    LINKED LIST
+    Algorithm and data structure
+    Solved in Python by Alessandro Silvestri - 2024
+    <alessandro.silvestri.work@gmail.com>
+'''
+
 class Node:
     def __init__(self, value):
         self.value = value
@@ -161,10 +168,16 @@ class LinkedList:
             temp = after
             after = after.next
         temp.next = before
-       
-print()
+    
+
+# testing the reverse method      
 my_list = LinkedList(1)
-my_list.pop()
+my_list.append(2)
+my_list.append(3)
+my_list.append(4)
+my_list.append(5)
+my_list.append(6)
+my_list.append(7)
 my_list.reverse()
 my_list.print_list()
 
