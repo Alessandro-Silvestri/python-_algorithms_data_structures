@@ -71,13 +71,66 @@ class Doubly_linked_list:
         self.head.pre = None
         self.length -= 1
         return temp
+    
+    def get(self, index):
+        ''' the search can start from the beginning or the end'''
+        # edge case: index out of range or empty list
+        if index < 0 or index >= self.length or self.head is None:
+            return None
+        middle_list = self.length // 2
+        if index < middle_list:
+            temp = self.head
+            for _ in range(index):
+                temp = temp.next
+            return temp
+        else:
+            temp = self.tail
+            steps_back = self.length - index - 1
+            for _ in range(steps_back):
+                temp = temp.prev
+            return temp
+    
+    def set_value(self, index, value):
+        ''' in the get() method are included'''
+        temp = self.get(index)
+        if temp:
+            temp.value = value
+            return True
+        return False
+    
+    def insert(self, index, value):
+        ####### BUG #######################
+        # it works only with normal cases #
+        ###################################
 
 
-# testing pop_first() method
-my_list = Doubly_linked_list(2)
-my_list.append(1)
 
-for _ in range(3):
-    print(my_list.pop_first())
+        
+        temp = self.get(index)
+        # edge case empty list, the node goes at the first position
+        if not temp: 
+            self.append(value)
+            return True
+
+
+        # normal case
+        new_node = Node(value)
+        new_node.prev = temp.prev
+        temp.prev.next = new_node
+        new_node.next = temp
+        temp.prev = new_node
+        self.length += 1
+
+
+
+
+
+
+my_list = Doubly_linked_list(1)
+my_list.append(2)
+my_list.append(3)
+my_list.print_list()
+my_list.insert(10, 100)
+my_list.print_list()
 
 
