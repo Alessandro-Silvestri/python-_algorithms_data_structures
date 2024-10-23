@@ -98,39 +98,36 @@ class Doubly_linked_list:
             return True
         return False
     
-    def insert(self, index, value):
-        ####### BUG #######################
-        # it works only with normal cases #
-        ###################################
-
-
-
-        
-        temp = self.get(index)
-        # edge case empty list, the node goes at the first position
-        if not temp: 
+    def insert(self, index, value):     
+        # edge case: insert out of range
+        if index < 0 or index > self.length:
+            return False
+        # edge case: insert at position 0
+        if index == 0:
+            self.prepend(value)
+            return True
+        # edge case: insert at last position
+        if index == self.length:
             self.append(value)
             return True
-
-
         # normal case
         new_node = Node(value)
+        temp = self.get(index)
         new_node.prev = temp.prev
         temp.prev.next = new_node
         new_node.next = temp
         temp.prev = new_node
         self.length += 1
-
+        return True
 
 
 
 
 
 my_list = Doubly_linked_list(1)
-my_list.append(2)
 my_list.append(3)
 my_list.print_list()
-my_list.insert(10, 100)
+my_list.insert(1, 2)
 my_list.print_list()
 
 
