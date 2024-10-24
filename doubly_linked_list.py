@@ -139,7 +139,7 @@ class Doubly_linked_list:
         return temp
 
 
-
+# testing the remove() method
 my_list = Doubly_linked_list(0)
 my_list.append(1)
 my_list.append(2)
