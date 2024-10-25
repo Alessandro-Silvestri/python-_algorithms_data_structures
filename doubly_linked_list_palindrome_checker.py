@@ -1,6 +1,13 @@
 '''
-    DOUBLY LINKED LIST exercise: reverse 
+    DOUBLY LINKED LIST exercise: Swap First and Last 
     Algorithm and data structure
+
+    Write a method to determine whether a given doubly linked list reads the same forwards and backwards.
+    For example, if the list contains the values [1, 2, 3, 2, 1],
+    then the method should return True, since the list is a palindrome.
+    If the list contains the values [1, 2, 3, 4, 5], then the method should
+    return False, since the list is not a palindrome.
+    
     Solved in Python by Alessandro Silvestri - 2024
     <alessandro.silvestri.work@gmail.com>
 '''
@@ -10,7 +17,6 @@ class Node:
         self.next = None
         self.prev = None
         
-
 class DoublyLinkedList:
     def __init__(self, value):
         new_node = Node(value)
@@ -23,7 +29,6 @@ class DoublyLinkedList:
         while temp is not None:
             print(temp.value)
             temp = temp.next
-        print(f"[length: {self.length}]")
         
     def append(self, value):
         new_node = Node(value)
@@ -37,32 +42,22 @@ class DoublyLinkedList:
         self.length += 1
         return True
     
-    def reverse(self):
-        # edge case: empty list
-        if self.head is None:
-            return False
-        # normal case
+    def is_palindrome(self):
         temp1 = self.head
-        temp2 = self.head.next       
-        while temp2:
-            temp1.next = temp1.prev
-            temp1.prev = temp2
-            temp1 = temp2
-            temp2 = temp2.next
-        temp1.next = temp1.prev
-        temp1.prev = None 
-        self.tail = self.head
-        self.head = temp1
+        temp2 = self.tail
+        steps = self.length // 2
+
+        for _ in range(steps):
+            if temp1.value != temp2.value:
+                return False
+            temp1 = temp1.next
+            temp2 =  temp2.prev
+        return True
 
 
 my_list = DoublyLinkedList(1)
 my_list.append(2)
 my_list.append(3)
-my_list.append(4)
-my_list.append(5)
-my_list.append(6)
-my_list.append(7)
-my_list.print_list()
-my_list.reverse()
-my_list.print_list()
-
+my_list.append(2)
+my_list.append(1)
+print(my_list.is_palindrome())
