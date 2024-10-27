@@ -51,29 +51,22 @@ class DoublyLinkedList:
         before = self.head
         after = self.head.next
         end = after.next
+        self.head = after 
 
         # swap in pairs
-        for i in range(2):
-            after.next = before
-            after.prev = first
-            before.next = end
-            before.prev = after
-            if end is not None:
-                end.prev = before
+        after.prev = first
+        after.next = before
+        before.prev = after
+        before.next = end
+        end.prev = before
 
-            # head correct position
-            if i == 0:
-                self.head = after
-            
-            # moving pointers
-            if end is None:
-                break
-            after = end.next
-            end = after.next
-            before = after.prev
-            first = before.prev
+        # moving pointers
+        first = before
+        before = end
+        after = before.next
+        end = after.next
+
         pass
-
 
 
 
@@ -81,7 +74,7 @@ my_list = DoublyLinkedList(1)
 my_list.append(2)
 my_list.append(3)
 my_list.append(4)
-# my_list.append(5)
+my_list.append(5)
 my_list.print_list()
 
 my_list.swap_pairs()
