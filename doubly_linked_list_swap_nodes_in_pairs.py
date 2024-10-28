@@ -46,28 +46,36 @@ class DoublyLinkedList:
         return True
     
     def swap_pairs(self):
+        # edge case: empty or list with 1 node
+        if self.length == 0 or self.length == 1:
+            return False
         # create 4 pointers
         first = None
         before = self.head
         after = self.head.next
         end = after.next
-        self.head = after 
-
+        self.head = after
+        cycles = self.length // 2
         # swap in pairs
-        after.prev = first
-        after.next = before
-        before.prev = after
-        before.next = end
-        end.prev = before
-
-        # moving pointers
-        first = before
-        before = end
-        after = before.next
-        end = after.next
-
-        pass
-
+        for i in range(cycles):
+            after.prev = first
+            after.next = before
+            before.prev = after
+            before.next = end
+            if end:
+                end.prev = before
+            if i > 0:
+                first.next = after
+            if end is None:
+                break
+            # moving pointers
+            if end.next is None:
+                break
+            first = before
+            before = end
+            after = end.next
+            end = after.next
+        return True
 
 
 my_list = DoublyLinkedList(1)
@@ -76,6 +84,5 @@ my_list.append(3)
 my_list.append(4)
 my_list.append(5)
 my_list.print_list()
-
 my_list.swap_pairs()
 my_list.print_list()
