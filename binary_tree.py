@@ -1,8 +1,8 @@
 '''
-Structure:
-parent 47
-childrenon the right are higher
-childrenon the left are lower
+    BINARY TREE
+    Algorithm and data structure.
+    Solved in Python by Alessandro Silvestri - 2024
+    <alessandro.silvestri.work@gmail.com>
 
       47       
     /    \
@@ -32,7 +32,7 @@ class Binary_search_tree:
         # empty tree
         if self.root is None:
             self.root = new_node
-            return
+            return True
         # create 2 pointers 
         temp = before = self.root
         # loop until the end and add the node
@@ -43,36 +43,58 @@ class Binary_search_tree:
               if temp is None:
                   temp = new_node
                   before.right = temp
-                  return
+                  return True
           # going left
           elif value < temp.value:
               temp = temp.left
               if temp is None:
                   temp = new_node
                   before.left = temp
-                  return
+                  return True
+          # value already exists in the tree       
           else:
-              return False
-          
+              return False      
           # step forward
           before = temp
-         
-'''
-      47       
-    /    \ 
-  21      76
- /  \    /  \
-18  27   52 82
+    
+    def contains(self, value):
+        temp = self.root
+        while temp:
+            if temp.value == value:
+                return True      
+            # going left
+            if value < temp.value:
+                temp = temp.left
+            # going right
+            else:
+                temp = temp.right       
+        return False    
 
 '''
+           47 
+          /  \    
+         /    \ 
+       21      76
+      /  \    /  \
+     18  27   52 82
+  / |   / \  / \  | |
+15 19 25 30 49 55 80 90
+'''
+
 my_tree = Binary_search_tree()
 my_tree.insert(47)
 my_tree.insert(21)
 my_tree.insert(76)
-my_tree.insert(76)
 my_tree.insert(18)
-# my_tree.insert(27)
+my_tree.insert(27)
 my_tree.insert(52)
 my_tree.insert(82)
-
-print(my_tree.root.right.right.value)
+my_tree.insert(15)
+my_tree.insert(19)
+my_tree.insert(25)
+my_tree.insert(30)
+my_tree.insert(49)
+my_tree.insert(55)
+my_tree.insert(89)
+my_tree.insert(90)
+print(my_tree.contains(17))
