@@ -23,7 +23,34 @@ class HashTable:
     def print_table(self):
         for i, val in enumerate(self.data_map):
             print(i, ": ", val)
-
     
+    def set_item(self, key:str, value:int):
+        index = self.__hash(key)
+        item = [key, value]
+        if self.data_map[index] is None:
+            self.data_map[index] = []
+        self.data_map[index].append(item)
+    
+    def get_item(self, key):
+        '''Given a key it returns the value'''
+        index = self.__hash(key)
+        counter = 0
+        if self.data_map[index] is not None:
+            for i in self.data_map[index]:
+                if i[0] == key:
+                    return self.data_map[index][counter][1]
+                counter += 1
+        return None
+
+
+
+
+
+
 my_hash_table = HashTable()
+my_hash_table.set_item("bolts", 1400)
+my_hash_table.set_item("washer", 50)
+my_hash_table.set_item("alex", 8)
+
 my_hash_table.print_table()
+print(my_hash_table.get_item("alex"))
