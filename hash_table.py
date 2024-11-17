@@ -41,6 +41,16 @@ class HashTable:
                     return self.data_map[index][counter][1]
                 counter += 1
         return None
+    
+    def keys(self):
+        keys_list = []
+        for i in self.data_map:
+            if i is not None:
+                for j in i:
+                    keys_list.append(j[0])
+        return keys_list
+
+
 
 
 
@@ -51,6 +61,15 @@ my_hash_table = HashTable()
 my_hash_table.set_item("bolts", 1400)
 my_hash_table.set_item("washer", 50)
 my_hash_table.set_item("alex", 8)
+my_hash_table.set_item("Tom", 8)
+my_hash_table.set_item("John", 8)
+my_hash_table.set_item("Paul", 8)
+my_hash_table.set_item("Mike", 8)
+my_hash_table.set_item("Anita", 8)
+my_hash_table.set_item("Linda", 8)
+my_hash_table.set_item("Jack", 8)
+my_hash_table.set_item("Peter", 8)
+my_hash_table.set_item("Dave", 8)
 
 my_hash_table.print_table()
-print(my_hash_table.get_item("alex"))
+print(my_hash_table.keys())
