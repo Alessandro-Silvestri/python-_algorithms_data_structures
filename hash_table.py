@@ -43,6 +43,7 @@ class HashTable:
         return None
     
     def keys(self):
+        '''returns a list with all the keys'''
         keys_list = []
         for i in self.data_map:
             if i is not None:
