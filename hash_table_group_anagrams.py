@@ -25,25 +25,33 @@ def are_anagrams(word1:str, word2:str):
     return True
 
 
-
-
-
-
 def group_anagrams(strings:list):
-    pass
-
-
+    list_result = [[]]
+    counter_list = 0
+    while strings != []:
+        first_word = strings[0]
+        list_result[counter_list].append(first_word)
+        strings.pop(0)
+        index_counter = 0
+        while index_counter != len(strings):
+            if are_anagrams(first_word, strings[index_counter]):
+                list_result[counter_list].append(strings[index_counter])
+                strings.pop(index_counter)
+            else:
+                index_counter += 1
+        counter_list += 1
+        list_result.append([])
+    return list_result[:-1]
 
 
 # print("1st set:")
-# print( group_anagrams(["eat", "tea", "tan", "ate", "nat", "bat"]) )
+print(group_anagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
 
 # print("\n2nd set:")
-# print( group_anagrams(["abc", "cba", "bac", "foo", "bar"]) )
+print( group_anagrams(["abc", "cba", "bac", "foo", "bar"]) )
 
 # print("\n3rd set:")
-# print( group_anagrams(["listen", "silent", "triangle", "integral", "garden", "ranged"]) )
-
+print( group_anagrams(["listen", "silent", "triangle", "integral", "garden", "ranged"]) )
 
 
 """
@@ -59,4 +67,8 @@ def group_anagrams(strings:list):
     [['listen', 'silent'], ['triangle', 'integral'], ['garden', 'ranged']]
 
 """
-print(are_anagrams("a", "ab"))
+
+# remove first item
+# my_list = [1, 2, 3, 4, 5]
+# first_item = my_list.pop(0)  # Removes the first item
+
