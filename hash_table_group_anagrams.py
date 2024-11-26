@@ -1,3 +1,10 @@
+'''
+    HASH TABLE: group_anagrams exercise
+    Algorithm and data structure
+    Solved in Python by Alessandro Silvestri - 2024
+    <alessandro.silvestri.work@gmail.com>
+'''
+
 def are_anagrams(word1:str, word2:str):
     dict_chars_word1 = {}
     dict_chars_word2 = {}
