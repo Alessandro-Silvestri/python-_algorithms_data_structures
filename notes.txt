@@ -47,3 +47,33 @@ the algorithm cuts the list in have until it achieve the item
 # insert or removing an item in the middle or in the beginning is O(n) because of
 # the re indexing of the items
 [1, 2, 3, 4, 5, 6, 7]
+
+-----------------------------------------------------------------------------------
+# GRAPHS
+# Adjacency matrix
+# In this case the connections are bidirectional
+
+           A 
+         /   \   
+     E           B
+     \           /
+       D------- C
+
+       A B C D E
+     A 0 1 0 0 1
+     B 0 0 1 0 0
+     C 0 1 0 1 0
+     D 0 0 1 0 1
+     E 1 0 0 1 0
+
+# Dictionary representation (more efficient because it doesn't need
+# to store the zeros like in the matrix
+# and also if you need to add a vertex you don't need to create
+# a new row, a new column and fill the with zeros)
+{
+    'A':['B','E'],
+    'B':['A','C'],
+    'C':['B','D'],
+    'D':['C','E'],
+    'E':['A','D'],
+}
