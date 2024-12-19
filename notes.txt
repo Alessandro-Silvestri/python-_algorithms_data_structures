@@ -77,3 +77,33 @@ the algorithm cuts the list in have until it achieve the item
     'D':['C','E'],
     'E':['A','D'],
 }
+
+-----------------------------------------------------------------------------------
+# HEAPS
+
+                    99
+                  /    \
+                72      61
+              /   \    /   \
+            58    55  27   18
+
+List representation (very common to see the index starting from 1):
+[99, 72, 61, 58, 55, 27, 18]
+ 1   2   3   4   5   6   7
+
+Find the children given the parent index:
+first son = index * 2
+second son = index * 2 + 1
+
+Find the parent given one of the 2 children:
+son = index // 2
+
+it's like the binary tree but they are different.
+    - The tree is always complete and perfect
+    - Max heap: the root is the highest number
+    - Min heap: the root is the lowest number
+    - All the other nodes are in descending order in vertical (no matter the horizontal order)
+    - It doesn't need to create node classes
+    - All the nodes are represented like a list
+    - the list index starts from 1 for an easier calculation for finding the children and the parent
+    - you can have duplicates
